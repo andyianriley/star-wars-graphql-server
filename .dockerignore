@@ -1,0 +1,7 @@
+tmp/
+node_modules/
+Dockerfile
+data/db/*
+data/tmp/*
+data/html/*
+.git/

@@ -1,0 +1,27 @@
+version: '3.2'
+
+services:
+  app:
+    image: andyianriley/star-wars-graphql-server
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - people-ws 
+      - vehicle-ws
+    environment:
+      - PEOPLE_WEBSERVICE_HOST=http://people-ws:9002
+      - VEHICLE_WEBSERVICE_HOST=http://vehicle-ws:9001    
+    ports:
+      - 9000:9000
+  people-ws:
+    image: andyianriley/star-wars-people-lookup
+    restart: always
+    ports:
+      - 9002:9002
+  vehicle-ws:
+    image: andyianriley/star-wars-vehicle-lookup
+    restart: always
+    ports:
+      - 9001:9001      
